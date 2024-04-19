@@ -57,8 +57,8 @@ h1 {
 }
 
 .page_content {
-  width: 83%;
-  margin-left: 250px;
+  width: calc(100vw - 220px);
+  margin-left: 210px;
   box-shadow: var(--shadow);
   margin-top: 10px;
   margin-bottom: 10px;

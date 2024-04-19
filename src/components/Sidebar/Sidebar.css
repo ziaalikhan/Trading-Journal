@@ -6,9 +6,31 @@
     left: 0;
     bottom: 0;
     box-shadow: var(--shadow);
-    padding: 20px;
+    /* padding: 20px; */
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    font-size: 11pt;
+    background-color: #181824;
     /* Enable vertical scrolling if needed */
+}
+/* Active link styles */
+.sidebar_container .active {
+  border-left: 4px #5867dd solid;
+  background-color: #1E1D2D;
+  color: #eee;
+  padding-left: 20px;
+}
+
+/* Inactive link styles */
+.sidebar_container a {
+  padding: 16px 4px 16px 24px;
+  margin-left: 0;
+  display: block;
+  transition: background 0.15s;
+  color: #aaa;
+  outline: none;
+  text-decoration: none;
 }
 
 
