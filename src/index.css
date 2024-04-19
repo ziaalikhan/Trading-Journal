@@ -1,0 +1,13 @@
+body {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: var(--monrope);
+  color: var(--lightModetextColor);
+  background-color: var(--lightModeBgColor);
+}
+p,
+h1 {
+  margin: 0%;
+  letter-spacing: 0.5px;
+}

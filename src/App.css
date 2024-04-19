@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
+
+:root {
+  --lightModetextColor: #181A18;
+  --darkModetextColor: #fff;
+  --greenTextColor: rgb(14, 203, 129);
+  --greenBgColor: rgb(14, 203, 129);
+  --redTextColor: rgb(246, 70, 93);
+  --redBgColor: rgb(246, 70, 93);
+  --darkModeBgColor: #181A20;
+  --lightModeBgColor: #FFFFFF;
+  --blackColor: #222222;
+  --grayColor: #808080;
+  --graySmooth: #bbbbbb;
+  --shadow: rgba(42, 42, 84, 0.279) 0 2px 16px 0;
+  --backgrounG: rgba(209, 212, 217, 0.28);
+  --white: #fff;
+  --softGray: #e7e7ea;
+  --sansSarif: sans-serif;
+  --monrope: 'Manrope', sans-serif;
+  --fontSize8: 8px;
+  --fontSize10: 10px;
+  --fontSize12: 12px;
+  --fontSize14: 14px;
+  --fontSize15: 15px;
+  --fontSize16: 16px;
+  --fontSize18: 18px;
+  --fontSize20: 20px;
+  --fontSize22: 22px;
+  --fontSize24: 24px;
+  --fontSize26: 26px;
+}
+
+
+body {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: var(--monrope);
+  color: var(--lightModetextColor);
+  background-color: var(--lightModeBgColor);
+}
+
+/* p,
+h1 {
+  margin: 0%;
+  letter-spacing: 0.5px;
+} */
+.dark-mode {
+  color: var(--darkModetextColor);
+  background-color: var(--darkModeBgColor);
+}
+
+.page_container {
+  width: 100%;
+  display: flex;
+}
+
+.page_content {
+  width: 83%;
+  margin-left: 250px;
+  box-shadow: var(--shadow);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-height: calc(100vh - 80px);
+}
+
+@media screen and (max-width: 700px) {
+  .page_content {
+    width: 100%;
+    margin-left: 0px;
+    margin: 10px;
+  }
+}
