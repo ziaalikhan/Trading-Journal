@@ -1,0 +1,15 @@
+
+
+.position_size_calculator_container {
+    width: 40%;
+    margin: 0 auto;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    .position_size_calculator_container {
+      width: 100%;
+      /* margin: 10px; */
+    }
+  }

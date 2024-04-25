@@ -2,7 +2,7 @@ import React from 'react'
 import "./Navbar.css";
 import ThemeToggler from '../ThemeToogler/ThemeToogler';
 import { Avatar } from 'antd';
-
+import Logo from "../../assets/crypto-book-mark-logo.png"
 
 const Navbar = ({ toggleTheme }) => {
 
@@ -10,7 +10,7 @@ const Navbar = ({ toggleTheme }) => {
     <div className='navbar_container'>
       {/* LOGO */}
       <div>
-        <p>Trading Journal</p>
+        <img src={Logo} width={40} />
       </div>
       {/* Menus */}
       <div className='navbar_menus_container'>
