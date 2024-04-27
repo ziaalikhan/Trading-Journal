@@ -5,9 +5,10 @@ import "./Portfolios.css";
 import { useNavigate } from "react-router-dom";
 import TableComponent from '../../components/TableComponent/TableComponent';
 
-const Portfolios = () => {
-
+const Portfolios = ({ isDarkMode }) => {
+    console.log("isDarkMode", isDarkMode)
     const navigate = useNavigate();
+    const tableClassName = isDarkMode ? 'dark-mode-table' : '';
 
     const columns = [
         {
@@ -109,7 +110,7 @@ const Portfolios = () => {
                         <Button type="primary" onClick={() => navigate("/new-portfolio")}>Add Portfolio</Button>
                     </div>
                 </div>
-                <div className='table_container'>
+                <div className={`table_container page_content_inner ${tableClassName}`}>
                     <TableComponent
                         columns={columns}
                         dataSource={data}

@@ -35,7 +35,7 @@ const index = () => {
         <Route path="/trade-history" element={<TradeHistory />} />
         <Route path="/risk-reward" element={<RiskReward />} />
         <Route path="/transactions" element={<Transactions />} />
-        <Route path="/portfolios" element={<Portfolios />} />
+        <Route path="/portfolios" element={<Portfolios isDarkMode={isDarkMode}/>} />
         <Route path="/trading-plan" element={<TradingPlan />} />
         <Route path="/position-size-calculator" element={<PositionSizeCalculator isDarkMode={isDarkMode} />} />
         <Route path="/billing" element={<Billing />} />
