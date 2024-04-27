@@ -2,10 +2,15 @@ import React, { useState } from 'react'
 import "./Login.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-
+import { Notify } from '../../components/Notify/Notify';
+import { loginUser } from '../../Redux/Reducers/UserReducer';
+import { BASE_URL } from '../../config/config';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [inputVal, setInputVal] = useState({
         email: "",
         password: "",
@@ -49,10 +54,20 @@ const Login = () => {
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            setTimeout(() => {
-                                alert(JSON.stringify(values));
+                            axios.post(`${BASE_URL}/user/login`, values).then((res) => {
+                                Notify("success", res?.data?.message);
+                                localStorage.setItem("User", JSON.stringify({ data: res?.data?.data, token: res?.data?.token }));
+                                dispatch(loginUser({ data: res?.data?.data, token: res?.data?.token }));
+                                navigate("/dashboard");
                                 setSubmitting(false);
-                            }, 400);
+                            }).catch((error) => {
+                                setSubmitting(false);
+                                Notify("error", error?.response?.data?.message);
+                            })
+                            // setTimeout(() => {
+                            //     alert(JSON.stringify(values));
+                            //     setSubmitting(false);
+                            // }, 400);
                         }}
                     >
                         {({ isSubmitting, errors }) => (

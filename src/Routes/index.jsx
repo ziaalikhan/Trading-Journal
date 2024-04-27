@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Routes, Route, useParams, json, useLocation } from "react-router-dom";
+import React, { useState, useMemo } from 'react'
+import { Routes, Route, useParams, json, useLocation, Navigate } from "react-router-dom";
 import Home from '../screens/Home/Home';
 import Dashboard from '../screens/Dashboard/Dashboard';
 import Navbar from '../components/Navbar/Navbar';
@@ -17,40 +17,57 @@ import Learning from '../screens/Learning/Learning';
 import Blogs from '../screens/Blogs/Blogs';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Register/Register';
-
+import { loginUser } from '../Redux/Reducers/UserReducer';
+import { useDispatch } from 'react-redux';
+import PrivateRoutes from './PrivateRoutes';
+import HeaderRoutes from './HeaderRoutes';
 
 
 const index = () => {
+
+  const dispatch = useDispatch();
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [logedIn, setLogedIn] = useState(null);
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
 
+
+  useMemo(() => {
+    const data = JSON.parse(localStorage.getItem("User"));
+    if (data) {
+      setLogedIn(data);
+      dispatch(loginUser(data));
+    }
+  }, [window]);
+
   return (
     <div className={isDarkMode ? "dark-mode" : ""}>
-      {
-        window?.location?.pathname !== "/login" && window?.location?.pathname !== "/register" ? (
-          <Navbar toggleTheme={toggleTheme} />
-        ) : null
-      }
+
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={logedIn ? <Navigate to={"/dashboard"} /> : <Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/trade" element={<Trade />} />
-        <Route path="/trade-history" element={<TradeHistory />} />
-        <Route path="/risk-reward" element={<RiskReward />} />
-        <Route path="/transactions" element={<Transactions />} />
-        <Route path="/portfolios" element={<Portfolios isDarkMode={isDarkMode}/>} />
-        <Route path="/trading-plan" element={<TradingPlan />} />
-        <Route path="/position-size-calculator" element={<PositionSizeCalculator isDarkMode={isDarkMode} />} />
-        <Route path="/billing" element={<Billing />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/learning" element={<Learning />} />
-        <Route path="/account" element={<Profile isDarkMode={isDarkMode} />} />
-        <Route path="/new-portfolio" element={<NewPortfolio isDarkMode={isDarkMode} />} />
+        <Route path={"/login"} element={<Login />} />
+
+        {/* Protected Routes */}
+        <Route element={<HeaderRoutes toggleTheme={toggleTheme} />}>
+          <Route element={<PrivateRoutes user={logedIn} />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/trade" element={<Trade />} />
+            <Route path="/trade-history" element={<TradeHistory />} />
+            <Route path="/risk-reward" element={<RiskReward />} />
+            <Route path="/transactions" element={<Transactions />} />
+            <Route path="/portfolios" element={<Portfolios isDarkMode={isDarkMode} />} />
+            <Route path="/trading-plan" element={<TradingPlan />} />
+            <Route path="/position-size-calculator" element={<PositionSizeCalculator isDarkMode={isDarkMode} />} />
+            <Route path="/billing" element={<Billing />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/learning" element={<Learning />} />
+            <Route path="/account" element={<Profile isDarkMode={isDarkMode} />} />
+            <Route path="/new-portfolio" element={<NewPortfolio isDarkMode={isDarkMode} />} />
+          </Route>
+        </Route>
       </Routes>
     </div>
   )

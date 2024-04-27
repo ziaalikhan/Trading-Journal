@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import axios from 'axios';
+import { BASE_URL } from '../../config/config';
+import { Notify } from '../../components/Notify/Notify';
+
+
 
 const Register = () => {
 
@@ -59,10 +64,14 @@ const Register = () => {
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            setTimeout(() => {
-                                alert(JSON.stringify(values));
+                            axios.post(`${BASE_URL}/user/signup`, values).then((res) => {
                                 setSubmitting(false);
-                            }, 400);
+                                navigate("/login");
+                                Notify("success", res?.data?.message);
+                            }).catch((error) => {
+                                Notify("error", error?.response?.data?.message);
+                                setSubmitting(false);
+                            })
                         }}
                     >
                         {({ isSubmitting, errors }) => (
