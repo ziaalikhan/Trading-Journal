@@ -15,6 +15,8 @@ import Billing from '../screens/Billing/Billing';
 import NewPortfolio from '../screens/NewPortfolio/NewPortfolio';
 import Learning from '../screens/Learning/Learning';
 import Blogs from '../screens/Blogs/Blogs';
+import Login from '../screens/Login/Login';
+import Register from '../screens/Register/Register';
 
 
 
@@ -27,10 +29,16 @@ const index = () => {
 
   return (
     <div className={isDarkMode ? "dark-mode" : ""}>
-      <Navbar toggleTheme={toggleTheme} />
+      {
+        window?.location?.pathname !== "/login" && window?.location?.pathname !== "/register" ? (
+          <Navbar toggleTheme={toggleTheme} />
+        ) : null
+      }
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/trade" element={<Trade />} />
         <Route path="/trade-history" element={<TradeHistory />} />
         <Route path="/risk-reward" element={<RiskReward />} />
