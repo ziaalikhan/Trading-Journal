@@ -17,20 +17,28 @@ import Learning from '../screens/Learning/Learning';
 import Blogs from '../screens/Blogs/Blogs';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Register/Register';
-import { loginUser } from '../Redux/Reducers/UserReducer';
-import { useDispatch } from 'react-redux';
+import { darkModeHandler, loginUser } from '../Redux/Reducers/UserReducer';
+import { useDispatch, useSelector } from 'react-redux';
 import PrivateRoutes from './PrivateRoutes';
 import HeaderRoutes from './HeaderRoutes';
-
+import axios from 'axios';
+import { BASE_URL } from '../config/config';
 
 const index = () => {
-
+  const { user_id, user, is_dark_mode } = useSelector((state) => state.User);
   const dispatch = useDispatch();
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(user?.data.dark_mode);
   const [logedIn, setLogedIn] = useState(null);
 
+  console.log("is_dark_mode", is_dark_mode)
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
+    // setIsDarkMode(!isDarkMode);
+    axios.patch(`${BASE_URL}/user/darkmode/${user_id}`).then((res) => {
+      dispatch(darkModeHandler(res?.data.dark_mode))
+      console.log("res MODE", res)
+    }).catch((error) => {
+
+    })
   };
 
 
@@ -38,6 +46,8 @@ const index = () => {
     const data = JSON.parse(localStorage.getItem("User"));
     if (data) {
       setLogedIn(data);
+      setIsDarkMode(data?.data.dark_mode);
+      dispatch(darkModeHandler(data?.data.dark_mode))
       dispatch(loginUser(data));
     }
   }, [window]);

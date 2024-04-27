@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     user: null,
-    user_id: null
+    user_id: null,
+    is_dark_mode: false
 }
 
 export const userSlice = createSlice({
@@ -15,11 +16,14 @@ export const userSlice = createSlice({
         },
         logout: (state) => {
             state.user = {};
-        }
+        },
+        darkModeHandler: (state, action) => {
+            state.is_dark_mode = action.payload;
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { loginUser, logout } = userSlice.actions;
+export const { loginUser, logout, darkModeHandler } = userSlice.actions;
 
 export default userSlice.reducer;

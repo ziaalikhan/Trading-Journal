@@ -19,6 +19,7 @@ const Navbar = ({ toggleTheme }) => {
     dispatch(logout());
     navigate("/login");
   };
+  
 
   return (
     <div className='navbar_container'>
