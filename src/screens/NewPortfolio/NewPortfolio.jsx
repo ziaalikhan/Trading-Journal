@@ -5,6 +5,9 @@ import ButtonComponent from '../../components/ButtonComponent/ButtonComponent';
 import { useNavigate } from "react-router-dom";
 import InputComponent from '../../components/InputComponent/InputComponent';
 import SelectComponent from '../../components/SelectComponent/SelectComponent';
+import { Button, Checkbox, Form, Input } from 'antd';
+
+
 
 const NewPortfolio = ({ isDarkMode }) => {
     const navigate = useNavigate();
@@ -20,6 +23,7 @@ const NewPortfolio = ({ isDarkMode }) => {
             <div className='page_content'>
                 <div className='new_portfolio_container'>
                     <p>QUICK SETUP</p>
+
                     <div className='new_portfolio_inner_container'>
                         <p>PORTFOLIO</p>
                         <p className={isDarkMode ? "text_class_dark" : "text_class_light"}>The first thing you will need is a portfolio. All your trades are grouped by a portfolio.</p>

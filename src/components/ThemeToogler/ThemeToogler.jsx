@@ -1,5 +1,4 @@
 import React from 'react';
-// import './ThemeToggler.css';
 import { Switch } from 'antd';
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 

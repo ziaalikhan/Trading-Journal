@@ -16,6 +16,7 @@ const TableComponent = ({
     return (
         <Table
             // bordered
+            rowKey={(record) => record._id}
             pagination={pagination}
             rowHoverable={rowHoverable}
             columns={columns}
