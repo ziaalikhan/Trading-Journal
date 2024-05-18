@@ -27,15 +27,13 @@ import { BASE_URL } from '../config/config';
 const index = () => {
   const { user_id, user, is_dark_mode } = useSelector((state) => state.User);
   const dispatch = useDispatch();
-  const [isDarkMode, setIsDarkMode] = useState(user?.data.dark_mode);
   const [logedIn, setLogedIn] = useState(null);
 
-  console.log("is_dark_mode", is_dark_mode)
-  const toggleTheme = () => {
-    // setIsDarkMode(!isDarkMode);
-    axios.patch(`${BASE_URL}/user/darkmode/${user_id}`).then((res) => {
-      dispatch(darkModeHandler(res?.data.dark_mode))
-      console.log("res MODE", res)
+  const toggleTheme = async () => {
+    await axios.patch(`${BASE_URL}/user/darkmode/${user_id}`).then(async (res) => {
+      let data = await JSON.parse(localStorage.getItem("User"));
+      localStorage.setItem("User", JSON.stringify({ data: { ...data.data, dark_mode: !data.data.dark_mode }, token: data.token }));
+      dispatch(darkModeHandler(res?.data?.data?.dark_mode));
     }).catch((error) => {
 
     })
@@ -46,15 +44,13 @@ const index = () => {
     const data = JSON.parse(localStorage.getItem("User"));
     if (data) {
       setLogedIn(data);
-      setIsDarkMode(data?.data.dark_mode);
       dispatch(darkModeHandler(data?.data.dark_mode))
       dispatch(loginUser(data));
     }
   }, [window]);
 
   return (
-    <div className={isDarkMode ? "dark-mode" : ""}>
-
+    <div className={is_dark_mode ? "dark-mode" : ""}>
       <Routes>
         <Route path="/" element={logedIn ? <Navigate to={"/dashboard"} /> : <Home />} />
         <Route path="/register" element={<Register />} />
@@ -67,15 +63,15 @@ const index = () => {
             <Route path="/trade" element={<Trade />} />
             <Route path="/trade-history" element={<TradeHistory />} />
             <Route path="/risk-reward" element={<RiskReward />} />
-            <Route path="/transactions" element={<Transactions />} />
-            <Route path="/portfolios" element={<Portfolios isDarkMode={isDarkMode} />} />
+            <Route path="/transactions" element={<Transactions isDarkMode={is_dark_mode}/>} />
+            <Route path="/portfolios" element={<Portfolios isDarkMode={is_dark_mode} />} />
             <Route path="/trading-plan" element={<TradingPlan />} />
-            <Route path="/position-size-calculator" element={<PositionSizeCalculator isDarkMode={isDarkMode} />} />
+            <Route path="/position-size-calculator" element={<PositionSizeCalculator isDarkMode={is_dark_mode} />} />
             <Route path="/billing" element={<Billing />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/learning" element={<Learning />} />
-            <Route path="/account" element={<Profile isDarkMode={isDarkMode} />} />
-            <Route path="/new-portfolio" element={<NewPortfolio isDarkMode={isDarkMode} />} />
+            <Route path="/account" element={<Profile isDarkMode={is_dark_mode} />} />
+            <Route path="/new-portfolio" element={<NewPortfolio isDarkMode={is_dark_mode} />} />
           </Route>
         </Route>
       </Routes>

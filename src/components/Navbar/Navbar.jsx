@@ -30,7 +30,7 @@ const Navbar = ({ toggleTheme }) => {
       {/* Menus */}
       <div className='navbar_menus_container'>
         <ThemeToggler toggleTheme={toggleTheme} />
-        <Avatar size={40}>{user?.data?.fullName.slice(0, 1)}</Avatar>
+        <Avatar size={40}>{user?.data?.fullName?.slice(0, 1)}</Avatar>
         <Button type='primary' onClick={logoutHandler}>Logout</Button>
       </div>
     </div>

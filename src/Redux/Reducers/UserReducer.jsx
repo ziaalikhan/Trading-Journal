@@ -3,7 +3,11 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     user: null,
     user_id: null,
-    is_dark_mode: false
+    is_dark_mode: false,
+   
+    theme_colors:{
+    textColor:"#181A18",
+    },
 }
 
 export const userSlice = createSlice({
@@ -19,6 +23,11 @@ export const userSlice = createSlice({
         },
         darkModeHandler: (state, action) => {
             state.is_dark_mode = action.payload;
+            if(state.is_dark_mode){
+                state.theme_colors.textColor="#fff"
+            }else{
+                state.theme_colors.textColor="#181A18"
+            }
         },
     },
 })
