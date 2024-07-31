@@ -9,6 +9,8 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 
 const Login = () => {
+    const [form] = Form.useForm();
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [inputVal, setInputVal] = useState({

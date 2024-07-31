@@ -1,0 +1,93 @@
+.full-width-tabs {
+  width: 100%;
+}
+
+.custom-tabpane {
+  width: 100%;
+}
+
+.ant-tabs-nav .ant-tabs-tab {
+  flex: 1;
+  /* Make tabs flex to fill available space */
+}
+
+.ant-tabs-tab-btn {
+  width: 100%;
+  /* Make tab button span full width */
+  text-align: center;
+  /* Center align tab text */
+}
+
+
+
+
+.trade_section2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  /* box-shadow: var(--shadow);
+    padding: 10px; */
+}
+
+.trade_section2>div {
+  flex: 1;
+  height: 300px;
+  box-shadow: var(--shadow);
+  padding: 10px;
+}
+
+.trade_section2_heading {
+  text-align: center;
+}
+
+
+
+
+.trade_section3 {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 20px;
+
+}
+
+
+.chips_container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+.chips {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  background-color: var(--grayColor);
+  padding: 2px 5px 2px 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  color: white;
+}
+
+.chips_selected {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  background-color: red;
+  padding: 2px 5px 2px 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  color: white;
+}
+
+@media only screen and (max-width: 1000px) {
+  .trade_section2 {
+    display: flex;
+    flex-direction: column;
+  }
+
+}

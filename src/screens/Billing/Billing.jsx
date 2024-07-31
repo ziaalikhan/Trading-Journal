@@ -6,7 +6,14 @@ const Billing = () => {
         <div className='page_container'>
             <Layout />
             <div className='page_content'>
-                <h1>Billing</h1>
+                <p>BILLING</p>
+                <div className='page_content_inner'>
+                    <p >Full Name : </p>
+                    <p >Email :</p>
+                    <p >Last Loged In : </p>
+                    <p >IP Address : </p>
+                    <p >User Role : </p>
+                </div>
             </div>
         </div>
     )

@@ -11,7 +11,7 @@ const TableComponent = ({
     dataSource = [],
     // size = "medium",
     loading = false,
-
+    style,
 }) => {
     return (
         <Table
@@ -22,6 +22,8 @@ const TableComponent = ({
             columns={columns}
             dataSource={dataSource}
             loading={loading}
+            style={style}
+            scroll={{ x: "max-content" }}
         // size={size}
 
         />

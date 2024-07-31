@@ -8,7 +8,7 @@ import RiskReward from '../screens/RiskReward/RiskReward';
 import Transactions from '../screens/Transactions/Transactions';
 import Portfolios from '../screens/Portfolios/Portfolios';
 import TradingPlan from '../screens/TradingPlan/TradingPlan';
-import Trade from '../screens/Trade/Trade';
+// import Trade from '../screens/Trade/Trade';
 import Profile from '../screens/Profile/Profile';
 import PositionSizeCalculator from '../screens/PositionSizeCalculator/PositionSizeCalculator';
 import Billing from '../screens/Billing/Billing';
@@ -23,6 +23,7 @@ import PrivateRoutes from './PrivateRoutes';
 import HeaderRoutes from './HeaderRoutes';
 import axios from 'axios';
 import { BASE_URL } from '../config/config';
+import Trade from '../screens/Trade/Trade';
 
 const index = () => {
   const { user_id, user, is_dark_mode } = useSelector((state) => state.User);
@@ -60,8 +61,8 @@ const index = () => {
         <Route element={<HeaderRoutes toggleTheme={toggleTheme} />}>
           <Route element={<PrivateRoutes user={logedIn} />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/trade" element={<Trade />} />
-            <Route path="/trade-history" element={<TradeHistory />} />
+            {/* <Route path="/trade" element={<Trade />} /> */}
+            <Route path="/trade-history" element={<TradeHistory isDarkMode={is_dark_mode}/>} />
             <Route path="/risk-reward" element={<RiskReward />} />
             <Route path="/transactions" element={<Transactions isDarkMode={is_dark_mode}/>} />
             <Route path="/portfolios" element={<Portfolios isDarkMode={is_dark_mode} />} />
@@ -70,6 +71,7 @@ const index = () => {
             <Route path="/billing" element={<Billing />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/learning" element={<Learning />} />
+            <Route path="/trade" element={<Trade isDarkMode={is_dark_mode}/>} />
             <Route path="/account" element={<Profile isDarkMode={is_dark_mode} />} />
             <Route path="/new-portfolio" element={<NewPortfolio isDarkMode={is_dark_mode} />} />
           </Route>

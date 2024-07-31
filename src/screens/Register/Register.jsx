@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
+import "./Register.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
 import { BASE_URL } from '../../config/config';
 import { Notify } from '../../components/Notify/Notify';
-
 
 
 const Register = () => {
@@ -92,6 +92,7 @@ const Register = () => {
                                     placeholder="Enter Your Confirm Password"
                                 />
                                 <p style={{ fontSize: 10, color: "red", padding: 0 }}>{errors.confirmPassword}</p>
+                                <p className='have_account'>Have an Account <span onClick={() => navigate("/login")}>Login</span></p>
                                 <button type="submit" disabled={isSubmitting}>
                                     Submit
                                 </button>

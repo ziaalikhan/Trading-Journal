@@ -29,7 +29,7 @@ const PositionSizeCalculator = ({ isDarkMode }) => {
                                 style={{ width: 200 }}
                             />
                         </div>
-                        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
+                        {/* <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
                             <p>Fees : </p>
                             <SelectComponent
                                 defaultValue='Exclude'
@@ -42,7 +42,7 @@ const PositionSizeCalculator = ({ isDarkMode }) => {
                                     label: "Include"
                                 }]}
                                 style={{ width: 200 }} />
-                        </div>
+                        </div> */}
                         <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
                             <p>Risk per trade %	: </p>
                             <InputComponent
@@ -93,10 +93,10 @@ const PositionSizeCalculator = ({ isDarkMode }) => {
                             <p>00</p>
                         </div>
                         <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
-                            <p>Value at risk : </p>
+                            <p>Potential Loss : </p>
                             <p>00</p>
                         </div>
-                        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
+                        {/* <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
                             <p>Entry fee : </p>
                             <p>00</p>
                         </div>
@@ -111,7 +111,7 @@ const PositionSizeCalculator = ({ isDarkMode }) => {
                         <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
                             <p>Order value : </p>
                             <p>00</p>
-                        </div>
+                        </div> */}
                         <hr />
                         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginTop: 10 }}>
                             <p>Optimal position size </p>
